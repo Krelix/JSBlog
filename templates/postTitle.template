@@ -1,0 +1,2 @@
+<h1 style="margin: 5px 0px 5px 30px; text-decoration: underline">{{title}}</h1>
+<p style="font-size: small; color: #DDD; font-style: oblique">{{author}} created this post on {{dateCreated}}</p>
