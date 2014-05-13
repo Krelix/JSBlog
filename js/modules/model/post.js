@@ -9,7 +9,7 @@ define(['jquery'], function() {
     if (!data) {
       throw ('Post cannot be null');
     } else {
-      this.dateCreated = data.dateCreate || new Date();
+      this.dateCreated = data.dateCreated || new Date();
       this.author = data.author || '';
       this.title = data.title || '';
       this.content = data.content || '';

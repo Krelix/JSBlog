@@ -17,14 +17,18 @@ require(['modules/template', 'modules/model/post', 'data'], function(template, P
   var myPosts = [];
   template.loadTemplates().then(function() {
     console.log('templates loadded');
-    _.each(data, function(testPost) {
+    var sortedData = _.sortBy(data, "dateCreated");
+    _.each(sortedData, function(testPost) {
       console.log('loading post... ' + testPost.dateCreated);
       // create a new post with the given data
       var post = new Post(testPost);
       console.log(testPost);
       var postDiv = $('<div>');
 
+      // Load title to keep in order
       template.loadTitle(postDiv, post);
+      $('#content').append(postDiv);
+
       // load then add the content
       post.load().then(function(updatedPost) {
         template.loadContent(postDiv, updatedPost);
@@ -32,8 +36,6 @@ require(['modules/template', 'modules/model/post', 'data'], function(template, P
       catch (function(e) {
         var errorMessage = '<p style="color: red;">Unable to load content : ' + e + ' </p>';
         postDiv.append(errorMessage);
-      }).then(function() {
-        $('#content').append(postDiv);
       });
     });
   });
